@@ -1,0 +1,231 @@
+   1               		.file	"mySSD.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	decodeSSD
+  18               	decodeSSD:
+  19               	.LFB8:
+  20               	.LM1:
+  21               	.LVL0:
+  22               	/* prologue: function */
+  23               	/* frame size = 0 */
+  24 0000 9C01      		movw r18,r24
+  25               	.LM2:
+  26 0002 6AE0      		ldi r22,lo8(10)
+  27 0004 70E0      		ldi r23,hi8(10)
+  28 0006 0E94 0000 		call __udivmodhi4
+  29               	.LVL1:
+  30 000a 9093 0000 		sts (dig+6)+1,r25
+  31 000e 8093 0000 		sts dig+6,r24
+  32               	.LM3:
+  33 0012 C901      		movw r24,r18
+  34 0014 64E6      		ldi r22,lo8(100)
+  35 0016 70E0      		ldi r23,hi8(100)
+  36 0018 0E94 0000 		call __udivmodhi4
+  37 001c 6AE0      		ldi r22,lo8(10)
+  38 001e 70E0      		ldi r23,hi8(10)
+  39 0020 0E94 0000 		call __udivmodhi4
+  40 0024 7093 0000 		sts (dig+4)+1,r23
+  41 0028 6093 0000 		sts dig+4,r22
+  42               	.LM4:
+  43 002c C901      		movw r24,r18
+  44 002e 68EE      		ldi r22,lo8(1000)
+  45 0030 73E0      		ldi r23,hi8(1000)
+  46 0032 0E94 0000 		call __udivmodhi4
+  47 0036 64E6      		ldi r22,lo8(100)
+  48 0038 70E0      		ldi r23,hi8(100)
+  49 003a 0E94 0000 		call __udivmodhi4
+  50 003e 7093 0000 		sts (dig+2)+1,r23
+  51 0042 6093 0000 		sts dig+2,r22
+  52               	.LM5:
+  53 0046 C901      		movw r24,r18
+  54 0048 60E1      		ldi r22,lo8(10000)
+  55 004a 77E2      		ldi r23,hi8(10000)
+  56 004c 0E94 0000 		call __udivmodhi4
+  57 0050 68EE      		ldi r22,lo8(1000)
+  58 0052 73E0      		ldi r23,hi8(1000)
+  59 0054 0E94 0000 		call __udivmodhi4
+  60 0058 7093 0000 		sts (dig)+1,r23
+  61 005c 6093 0000 		sts dig,r22
+  62               	/* epilogue start */
+  63               	.LM6:
+  64 0060 0895      		ret
+  65               	.LFE8:
+  67               	.global	countUp
+  69               	countUp:
+  70               	.LFB7:
+  71               	.LM7:
+  72 0062 AF92      		push r10
+  73 0064 BF92      		push r11
+  74 0066 CF92      		push r12
+  75 0068 DF92      		push r13
+  76 006a EF92      		push r14
+  77 006c FF92      		push r15
+  78 006e 0F93      		push r16
+  79 0070 1F93      		push r17
+  80 0072 CF93      		push r28
+  81 0074 DF93      		push r29
+  82               	/* prologue: function */
+  83               	/* frame size = 0 */
+  84               	.LM8:
+  85 0076 00E0      		ldi r16,lo8(0)
+  86 0078 10E0      		ldi r17,hi8(0)
+  87               	.LVL2:
+  88               	.LBB14:
+  89               	.LBB15:
+  90               	.LM9:
+  91 007a 21E0      		ldi r18,lo8(1)
+  92 007c A22E      		mov r10,r18
+  93 007e B12C      		mov r11,__zero_reg__
+  94               	.LBB16:
+  95               	.LBB17:
+  96               	.LBB18:
+  97               	.LBB19:
+  98               	.LM10:
+  99 0080 90ED      		ldi r25,lo8(2000)
+ 100 0082 C92E      		mov r12,r25
+ 101 0084 97E0      		ldi r25,hi8(2000)
+ 102 0086 D92E      		mov r13,r25
+ 103 0088 00C0      		rjmp .L4
+ 104               	.L5:
+ 105               	.LBE19:
+ 106               	.LBE18:
+ 107               	.LBE17:
+ 108               	.LBE16:
+ 109               	.LM11:
+ 110 008a C501      		movw r24,r10
+ 111 008c 0C2E      		mov r0,r28
+ 112 008e 00C0      		rjmp 2f
+ 113 0090 880F      	1:	lsl r24
+ 114 0092 991F      		rol r25
+ 115 0094 0A94      	2:	dec r0
+ 116 0096 02F4      		brpl 1b
+ 117 0098 8BBB      		out 59-32,r24
+ 118               	.LM12:
+ 119 009a C801      		movw r24,r16
+ 120 009c 0E94 0000 		call decodeSSD
+ 121               	.LM13:
+ 122 00a0 D701      		movw r26,r14
+ 123 00a2 ED91      		ld r30,X+
+ 124 00a4 FD91      		ld r31,X+
+ 125 00a6 7D01      		movw r14,r26
+ 126 00a8 E050      		subi r30,lo8(-(nums))
+ 127 00aa F040      		sbci r31,hi8(-(nums))
+ 128 00ac 8081      		ld r24,Z
+ 129 00ae 85BB      		out 53-32,r24
+ 130               	.LBB23:
+ 131               	.LBB22:
+ 132               	.LBB21:
+ 133               	.LBB20:
+ 134               	.LM14:
+ 135 00b0 C601      		movw r24,r12
+ 136               	.LVL3:
+ 137               	/* #APP */
+ 138               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 139 00b2 0197      		1: sbiw r24,1
+ 140 00b4 01F4      		brne 1b
+ 141               	 ;  0 "" 2
+ 142               	/* #NOAPP */
+ 143               	.LBE20:
+ 144               	.LBE21:
+ 145               	.LBE22:
+ 146               	.LBE23:
+ 147               	.LM15:
+ 148 00b6 15BA      		out 53-32,__zero_reg__
+ 149 00b8 2196      		adiw r28,1
+ 150               	.LM16:
+ 151 00ba C830      		cpi r28,8
+ 152 00bc D105      		cpc r29,__zero_reg__
+ 153 00be 01F4      		brne .L5
+ 154               	.LBE15:
+ 155               	.LM17:
+ 156 00c0 0F5F      		subi r16,lo8(-(1))
+ 157 00c2 1F4F      		sbci r17,hi8(-(1))
+ 158 00c4 B7E2      		ldi r27,hi8(10000)
+ 159 00c6 0031      		cpi r16,lo8(10000)
+ 160 00c8 1B07      		cpc r17,r27
+ 161 00ca 01F0      		breq .L7
+ 162               	.L4:
+ 163 00cc 80E0      		ldi r24,lo8(dig)
+ 164 00ce E82E      		mov r14,r24
+ 165 00d0 80E0      		ldi r24,hi8(dig)
+ 166 00d2 F82E      		mov r15,r24
+ 167               	.LVL4:
+ 168 00d4 C4E0      		ldi r28,lo8(4)
+ 169 00d6 D0E0      		ldi r29,hi8(4)
+ 170 00d8 00C0      		rjmp .L5
+ 171               	.LVL5:
+ 172               	.L7:
+ 173               	/* epilogue start */
+ 174               	.LBE14:
+ 175               	.LM18:
+ 176 00da DF91      		pop r29
+ 177 00dc CF91      		pop r28
+ 178 00de 1F91      		pop r17
+ 179 00e0 0F91      		pop r16
+ 180               	.LVL6:
+ 181 00e2 FF90      		pop r15
+ 182 00e4 EF90      		pop r14
+ 183 00e6 DF90      		pop r13
+ 184 00e8 CF90      		pop r12
+ 185 00ea BF90      		pop r11
+ 186 00ec AF90      		pop r10
+ 187 00ee 0895      		ret
+ 188               	.LFE7:
+ 190               	.global	main
+ 192               	main:
+ 193               	.LFB6:
+ 194               	.LM19:
+ 195               	/* prologue: function */
+ 196               	/* frame size = 0 */
+ 197               	.LM20:
+ 198 00f0 8FEF      		ldi r24,lo8(-1)
+ 199 00f2 84BB      		out 52-32,r24
+ 200               	.LM21:
+ 201 00f4 8ABB      		out 58-32,r24
+ 202               	.L10:
+ 203               	.LM22:
+ 204 00f6 0E94 0000 		call countUp
+ 205 00fa 00C0      		rjmp .L10
+ 206               	.LFE6:
+ 208               	.global	nums
+ 209               		.data
+ 212               	nums:
+ 213 0000 3F        		.byte	63
+ 214 0001 06        		.byte	6
+ 215 0002 5B        		.byte	91
+ 216 0003 4F        		.byte	79
+ 217 0004 66        		.byte	102
+ 218 0005 6D        		.byte	109
+ 219 0006 7D        		.byte	125
+ 220 0007 07        		.byte	7
+ 221 0008 7F        		.byte	127
+ 222 0009 6F        		.byte	111
+ 223               	.global	dig
+ 226               	dig:
+ 227 000a 0100      		.word	1
+ 228 000c 0200      		.word	2
+ 229 000e 0300      		.word	3
+ 230 0010 0400      		.word	4
+ 271               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 mySSD.c
+C:\Users\Vinnie\AppData\Local\Temp/ccvEgxxc.s:2      *ABS*:0000003f __SREG__
+C:\Users\Vinnie\AppData\Local\Temp/ccvEgxxc.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Vinnie\AppData\Local\Temp/ccvEgxxc.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Vinnie\AppData\Local\Temp/ccvEgxxc.s:5      *ABS*:00000034 __CCP__
+C:\Users\Vinnie\AppData\Local\Temp/ccvEgxxc.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Vinnie\AppData\Local\Temp/ccvEgxxc.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Vinnie\AppData\Local\Temp/ccvEgxxc.s:18     .text:00000000 decodeSSD
+C:\Users\Vinnie\AppData\Local\Temp/ccvEgxxc.s:226    .data:0000000a dig
+C:\Users\Vinnie\AppData\Local\Temp/ccvEgxxc.s:69     .text:00000062 countUp
+C:\Users\Vinnie\AppData\Local\Temp/ccvEgxxc.s:212    .data:00000000 nums
+C:\Users\Vinnie\AppData\Local\Temp/ccvEgxxc.s:192    .text:000000f0 main
+
+UNDEFINED SYMBOLS
+__udivmodhi4
+__do_copy_data

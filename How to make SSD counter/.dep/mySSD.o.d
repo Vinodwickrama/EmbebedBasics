@@ -1,0 +1,1 @@
+mySSD.o: mySSD.c

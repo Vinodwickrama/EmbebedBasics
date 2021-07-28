@@ -1,0 +1,1 @@
+myADC.o: myADC.c

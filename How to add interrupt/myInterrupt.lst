@@ -1,0 +1,160 @@
+   1               		.file	"myInterrupt.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	main
+  18               	main:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 8FEF      		ldi r24,lo8(-1)
+  25 0002 84BB      		out 52-32,r24
+  26               	.LM3:
+  27 0004 83E0      		ldi r24,lo8(3)
+  28 0006 85BF      		out 85-32,r24
+  29               	.LM4:
+  30 0008 80E4      		ldi r24,lo8(64)
+  31 000a 8BBF      		out 91-32,r24
+  32               	.LM5:
+  33               	/* #APP */
+  34               	 ;  11 "myInterrupt.c" 1
+  35 000c 7894      		sei
+  36               	 ;  0 "" 2
+  37               	/* #NOAPP */
+  38               	.LBB24:
+  39               	.LBB25:
+  40               	.LBB26:
+  41               	.LBB27:
+  42               	.LM6:
+  43 000e 28EC      		ldi r18,lo8(200)
+  44 0010 30E0      		ldi r19,hi8(200)
+  45               	.LVL0:
+  46               	.L4:
+  47               	.LBE27:
+  48               	.LBE26:
+  49               	.LBE25:
+  50               	.LBE24:
+  51               	.LM7:
+  52 0012 85B3      		in r24,53-32
+  53               	.LVL1:
+  54 0014 8F60      		ori r24,lo8(15)
+  55 0016 85BB      		out 53-32,r24
+  56 0018 80E1      		ldi r24,lo8(10000)
+  57 001a 97E2      		ldi r25,hi8(10000)
+  58               	.LVL2:
+  59               	.L2:
+  60               	.LBB31:
+  61               	.LBB30:
+  62               	.LBB29:
+  63               	.LBB28:
+  64               	.LM8:
+  65 001c F901      		movw r30,r18
+  66               	.LVL3:
+  67               	/* #APP */
+  68               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  69 001e 3197      		1: sbiw r30,1
+  70 0020 01F4      		brne 1b
+  71               	 ;  0 "" 2
+  72               	/* #NOAPP */
+  73               	.LBE28:
+  74               	.LBE29:
+  75               	.LM9:
+  76 0022 0197      		sbiw r24,1
+  77               	.LM10:
+  78 0024 01F4      		brne .L2
+  79               	.LBE30:
+  80               	.LBE31:
+  81               	.LM11:
+  82 0026 15BA      		out 53-32,__zero_reg__
+  83 0028 80E1      		ldi r24,lo8(10000)
+  84 002a 97E2      		ldi r25,hi8(10000)
+  85               	.LVL4:
+  86               	.L3:
+  87               	.LBB32:
+  88               	.LBB33:
+  89               	.LBB34:
+  90               	.LBB35:
+  91               	.LM12:
+  92 002c F901      		movw r30,r18
+  93               	.LVL5:
+  94               	/* #APP */
+  95               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  96 002e 3197      		1: sbiw r30,1
+  97 0030 01F4      		brne 1b
+  98               	 ;  0 "" 2
+  99               	/* #NOAPP */
+ 100               	.LBE35:
+ 101               	.LBE34:
+ 102               	.LM13:
+ 103 0032 0197      		sbiw r24,1
+ 104               	.LM14:
+ 105 0034 01F4      		brne .L3
+ 106 0036 00C0      		rjmp .L4
+ 107               	.LBE33:
+ 108               	.LBE32:
+ 109               	.LFE6:
+ 111               	.global	__vector_1
+ 113               	__vector_1:
+ 114               	.LFB7:
+ 115               	.LM15:
+ 116 0038 1F92      		push __zero_reg__
+ 117 003a 0F92      		push r0
+ 118 003c 0FB6      		in r0,__SREG__
+ 119 003e 0F92      		push r0
+ 120 0040 1124      		clr __zero_reg__
+ 121 0042 8F93      		push r24
+ 122 0044 9F93      		push r25
+ 123               	/* prologue: Signal */
+ 124               	/* frame size = 0 */
+ 125               	.LM16:
+ 126 0046 85B3      		in r24,53-32
+ 127 0048 806F      		ori r24,lo8(-16)
+ 128 004a 85BB      		out 53-32,r24
+ 129               	.LBB36:
+ 130               	.LBB37:
+ 131               	.LBB38:
+ 132               	.LBB39:
+ 133               	.LM17:
+ 134 004c 80E2      		ldi r24,lo8(20000)
+ 135 004e 9EE4      		ldi r25,hi8(20000)
+ 136               	.LVL6:
+ 137               	/* #APP */
+ 138               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 139 0050 0197      		1: sbiw r24,1
+ 140 0052 01F4      		brne 1b
+ 141               	 ;  0 "" 2
+ 142               	/* epilogue start */
+ 143               	/* #NOAPP */
+ 144               	.LBE39:
+ 145               	.LBE38:
+ 146               	.LBE37:
+ 147               	.LBE36:
+ 148               	.LM18:
+ 149 0054 9F91      		pop r25
+ 150 0056 8F91      		pop r24
+ 151               	.LVL7:
+ 152 0058 0F90      		pop r0
+ 153 005a 0FBE      		out __SREG__,r0
+ 154 005c 0F90      		pop r0
+ 155 005e 1F90      		pop __zero_reg__
+ 156 0060 1895      		reti
+ 157               	.LFE7:
+ 191               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 myInterrupt.c
+C:\Users\Vinnie\AppData\Local\Temp/ccizW5RA.s:2      *ABS*:0000003f __SREG__
+C:\Users\Vinnie\AppData\Local\Temp/ccizW5RA.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Vinnie\AppData\Local\Temp/ccizW5RA.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Vinnie\AppData\Local\Temp/ccizW5RA.s:5      *ABS*:00000034 __CCP__
+C:\Users\Vinnie\AppData\Local\Temp/ccizW5RA.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Vinnie\AppData\Local\Temp/ccizW5RA.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Vinnie\AppData\Local\Temp/ccizW5RA.s:18     .text:00000000 main
+C:\Users\Vinnie\AppData\Local\Temp/ccizW5RA.s:113    .text:00000038 __vector_1
+
+NO UNDEFINED SYMBOLS

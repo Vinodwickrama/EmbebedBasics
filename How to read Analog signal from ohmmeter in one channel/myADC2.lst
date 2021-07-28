@@ -1,0 +1,239 @@
+   1               		.file	"myADC2.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	decodeSSD
+  18               	decodeSSD:
+  19               	.LFB7:
+  20               	.LM1:
+  21               	.LVL0:
+  22               	/* prologue: function */
+  23               	/* frame size = 0 */
+  24 0000 9C01      		movw r18,r24
+  25               	.LM2:
+  26 0002 6AE0      		ldi r22,lo8(10)
+  27 0004 70E0      		ldi r23,hi8(10)
+  28 0006 0E94 0000 		call __udivmodhi4
+  29               	.LVL1:
+  30 000a 9093 0000 		sts (dig+6)+1,r25
+  31 000e 8093 0000 		sts dig+6,r24
+  32               	.LM3:
+  33 0012 C901      		movw r24,r18
+  34 0014 64E6      		ldi r22,lo8(100)
+  35 0016 70E0      		ldi r23,hi8(100)
+  36 0018 0E94 0000 		call __udivmodhi4
+  37 001c 6AE0      		ldi r22,lo8(10)
+  38 001e 70E0      		ldi r23,hi8(10)
+  39 0020 0E94 0000 		call __udivmodhi4
+  40 0024 7093 0000 		sts (dig+4)+1,r23
+  41 0028 6093 0000 		sts dig+4,r22
+  42               	.LM4:
+  43 002c C901      		movw r24,r18
+  44 002e 68EE      		ldi r22,lo8(1000)
+  45 0030 73E0      		ldi r23,hi8(1000)
+  46 0032 0E94 0000 		call __udivmodhi4
+  47 0036 64E6      		ldi r22,lo8(100)
+  48 0038 70E0      		ldi r23,hi8(100)
+  49 003a 0E94 0000 		call __udivmodhi4
+  50 003e 7093 0000 		sts (dig+2)+1,r23
+  51 0042 6093 0000 		sts dig+2,r22
+  52               	.LM5:
+  53 0046 C901      		movw r24,r18
+  54 0048 60E1      		ldi r22,lo8(10000)
+  55 004a 77E2      		ldi r23,hi8(10000)
+  56 004c 0E94 0000 		call __udivmodhi4
+  57 0050 68EE      		ldi r22,lo8(1000)
+  58 0052 73E0      		ldi r23,hi8(1000)
+  59 0054 0E94 0000 		call __udivmodhi4
+  60 0058 7093 0000 		sts (dig)+1,r23
+  61 005c 6093 0000 		sts dig,r22
+  62               	/* epilogue start */
+  63               	.LM6:
+  64 0060 0895      		ret
+  65               	.LFE7:
+  67               	.global	initDDR
+  69               	initDDR:
+  70               	.LFB8:
+  71               	.LM7:
+  72               	/* prologue: function */
+  73               	/* frame size = 0 */
+  74               	.LM8:
+  75 0062 8FEF      		ldi r24,lo8(-1)
+  76 0064 84BB      		out 52-32,r24
+  77               	.LM9:
+  78 0066 80EF      		ldi r24,lo8(-16)
+  79 0068 8ABB      		out 58-32,r24
+  80               	/* epilogue start */
+  81               	.LM10:
+  82 006a 0895      		ret
+  83               	.LFE8:
+  85               	.global	displaySSD
+  87               	displaySSD:
+  88               	.LFB10:
+  89               	.LM11:
+  90               	/* prologue: function */
+  91               	/* frame size = 0 */
+  92               	.LM12:
+  93 006c A0E0      		ldi r26,lo8(dig)
+  94 006e B0E0      		ldi r27,hi8(dig)
+  95 0070 24E0      		ldi r18,lo8(4)
+  96 0072 30E0      		ldi r19,hi8(4)
+  97               	.LBB15:
+  98               	.LM13:
+  99 0074 61E0      		ldi r22,lo8(1)
+ 100 0076 70E0      		ldi r23,hi8(1)
+ 101               	.LBB16:
+ 102               	.LBB17:
+ 103               	.LBB18:
+ 104               	.LBB19:
+ 105               	.LM14:
+ 106 0078 40ED      		ldi r20,lo8(2000)
+ 107 007a 57E0      		ldi r21,hi8(2000)
+ 108               	.L6:
+ 109               	.LBE19:
+ 110               	.LBE18:
+ 111               	.LBE17:
+ 112               	.LBE16:
+ 113               	.LM15:
+ 114 007c CB01      		movw r24,r22
+ 115 007e 022E      		mov r0,r18
+ 116 0080 00C0      		rjmp 2f
+ 117 0082 880F      	1:	lsl r24
+ 118 0084 991F      		rol r25
+ 119 0086 0A94      	2:	dec r0
+ 120 0088 02F4      		brpl 1b
+ 121 008a 8BBB      		out 59-32,r24
+ 122               	.LM16:
+ 123 008c ED91      		ld r30,X+
+ 124 008e FD91      		ld r31,X+
+ 125 0090 E050      		subi r30,lo8(-(nums))
+ 126 0092 F040      		sbci r31,hi8(-(nums))
+ 127 0094 8081      		ld r24,Z
+ 128 0096 85BB      		out 53-32,r24
+ 129               	.LBB23:
+ 130               	.LBB22:
+ 131               	.LBB21:
+ 132               	.LBB20:
+ 133               	.LM17:
+ 134 0098 CA01      		movw r24,r20
+ 135               	.LVL2:
+ 136               	/* #APP */
+ 137               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 138 009a 0197      		1: sbiw r24,1
+ 139 009c 01F4      		brne 1b
+ 140               	 ;  0 "" 2
+ 141               	/* #NOAPP */
+ 142               	.LBE20:
+ 143               	.LBE21:
+ 144               	.LBE22:
+ 145               	.LBE23:
+ 146               	.LM18:
+ 147 009e 15BA      		out 53-32,__zero_reg__
+ 148 00a0 2F5F      		subi r18,lo8(-(1))
+ 149 00a2 3F4F      		sbci r19,hi8(-(1))
+ 150               	.LM19:
+ 151 00a4 2830      		cpi r18,8
+ 152 00a6 3105      		cpc r19,__zero_reg__
+ 153 00a8 01F4      		brne .L6
+ 154               	/* epilogue start */
+ 155               	.LBE15:
+ 156               	.LM20:
+ 157 00aa 0895      		ret
+ 158               	.LFE10:
+ 160               	.global	readAnalog
+ 162               	readAnalog:
+ 163               	.LFB9:
+ 164               	.LM21:
+ 165               	/* prologue: function */
+ 166               	/* frame size = 0 */
+ 167               	.LM22:
+ 168 00ac 82E4      		ldi r24,lo8(66)
+ 169 00ae 87B9      		out 39-32,r24
+ 170               	.LM23:
+ 171 00b0 87EA      		ldi r24,lo8(-89)
+ 172 00b2 86B9      		out 38-32,r24
+ 173               	.LM24:
+ 174 00b4 369A      		sbi 38-32,6
+ 175               	.L10:
+ 176               	.LM25:
+ 177 00b6 369B      		sbis 38-32,6
+ 178 00b8 00C0      		rjmp .L10
+ 179               	.LM26:
+ 180 00ba 84B1      		in r24,36-32
+ 181 00bc 95B1      		in r25,(36)+1-32
+ 182 00be 0E94 0000 		call decodeSSD
+ 183               	.LM27:
+ 184 00c2 0E94 0000 		call displaySSD
+ 185               	/* epilogue start */
+ 186               	.LM28:
+ 187 00c6 0895      		ret
+ 188               	.LFE9:
+ 190               	.global	main
+ 192               	main:
+ 193               	.LFB6:
+ 194               	.LM29:
+ 195               	/* prologue: function */
+ 196               	/* frame size = 0 */
+ 197               	.LBB24:
+ 198               	.LBB25:
+ 199               	.LM30:
+ 200 00c8 8FEF      		ldi r24,lo8(-1)
+ 201 00ca 84BB      		out 52-32,r24
+ 202               	.LM31:
+ 203 00cc 80EF      		ldi r24,lo8(-16)
+ 204 00ce 8ABB      		out 58-32,r24
+ 205               	.L14:
+ 206               	.LBE25:
+ 207               	.LBE24:
+ 208               	.LM32:
+ 209 00d0 1BBA      		out 59-32,__zero_reg__
+ 210               	.LM33:
+ 211 00d2 0E94 0000 		call readAnalog
+ 212 00d6 00C0      		rjmp .L14
+ 213               	.LFE6:
+ 215               	.global	nums
+ 216               		.data
+ 219               	nums:
+ 220 0000 3F        		.byte	63
+ 221 0001 06        		.byte	6
+ 222 0002 5B        		.byte	91
+ 223 0003 4F        		.byte	79
+ 224 0004 66        		.byte	102
+ 225 0005 6D        		.byte	109
+ 226 0006 7D        		.byte	125
+ 227 0007 07        		.byte	7
+ 228 0008 7F        		.byte	127
+ 229 0009 6F        		.byte	111
+ 230               	.global	dig
+ 233               	dig:
+ 234 000a 0100      		.word	1
+ 235 000c 0200      		.word	2
+ 236 000e 0200      		.word	2
+ 237 0010 0400      		.word	4
+ 238               		.comm reading,2,1
+ 295               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 myADC2.c
+C:\Users\Vinnie\AppData\Local\Temp/ccU3X59d.s:2      *ABS*:0000003f __SREG__
+C:\Users\Vinnie\AppData\Local\Temp/ccU3X59d.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Vinnie\AppData\Local\Temp/ccU3X59d.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Vinnie\AppData\Local\Temp/ccU3X59d.s:5      *ABS*:00000034 __CCP__
+C:\Users\Vinnie\AppData\Local\Temp/ccU3X59d.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Vinnie\AppData\Local\Temp/ccU3X59d.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Vinnie\AppData\Local\Temp/ccU3X59d.s:18     .text:00000000 decodeSSD
+C:\Users\Vinnie\AppData\Local\Temp/ccU3X59d.s:233    .data:0000000a dig
+C:\Users\Vinnie\AppData\Local\Temp/ccU3X59d.s:69     .text:00000062 initDDR
+C:\Users\Vinnie\AppData\Local\Temp/ccU3X59d.s:87     .text:0000006c displaySSD
+C:\Users\Vinnie\AppData\Local\Temp/ccU3X59d.s:219    .data:00000000 nums
+C:\Users\Vinnie\AppData\Local\Temp/ccU3X59d.s:162    .text:000000ac readAnalog
+C:\Users\Vinnie\AppData\Local\Temp/ccU3X59d.s:192    .text:000000c8 main
+                            *COM*:00000002 reading
+
+UNDEFINED SYMBOLS
+__udivmodhi4
+__do_copy_data
+__do_clear_bss

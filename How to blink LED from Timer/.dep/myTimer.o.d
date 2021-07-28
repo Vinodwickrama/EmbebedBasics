@@ -1,0 +1,1 @@
+myTimer.o: myTimer.c

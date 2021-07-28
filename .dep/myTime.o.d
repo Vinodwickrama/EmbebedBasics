@@ -1,0 +1,1 @@
+myTime.o: myTime.c

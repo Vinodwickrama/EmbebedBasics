@@ -1,0 +1,76 @@
+   1               		.file	"myTime.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	main
+  18               	main:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 8FEF      		ldi r24,lo8(-1)
+  25 0002 84BB      		out 52-32,r24
+  26               	.LBB4:
+  27               	.LBB5:
+  28               	.LM3:
+  29 0004 83B7      		in r24,83-32
+  30 0006 8560      		ori r24,lo8(5)
+  31 0008 83BF      		out 83-32,r24
+  32               	.LM4:
+  33 000a 12BE      		out 82-32,__zero_reg__
+  34               	.L2:
+  35 000c 00C0      		rjmp .L2
+  36               	.LBE5:
+  37               	.LBE4:
+  38               	.LFE6:
+  40               	.global	iniTime
+  42               	iniTime:
+  43               	.LFB7:
+  44               	.LM5:
+  45               	/* prologue: function */
+  46               	/* frame size = 0 */
+  47               	.LM6:
+  48 000e 83B7      		in r24,83-32
+  49 0010 8560      		ori r24,lo8(5)
+  50 0012 83BF      		out 83-32,r24
+  51               	.LM7:
+  52 0014 12BE      		out 82-32,__zero_reg__
+  53               	/* epilogue start */
+  54               	.LM8:
+  55 0016 0895      		ret
+  56               	.LFE7:
+  58               	.global	ISR
+  60               	ISR:
+  61               	.LFB8:
+  62               	.LM9:
+  63               	.LVL0:
+  64               	/* prologue: function */
+  65               	/* frame size = 0 */
+  66               	.LM10:
+  67 0018 85B3      		in r24,53-32
+  68               	.LVL1:
+  69 001a 8095      		com r24
+  70 001c 85BB      		out 53-32,r24
+  71               	/* epilogue start */
+  72               	.LM11:
+  73 001e 0895      		ret
+  74               	.LFE8:
+ 116               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 myTime.c
+C:\Users\Vinnie\AppData\Local\Temp/cc1NYKDS.s:2      *ABS*:0000003f __SREG__
+C:\Users\Vinnie\AppData\Local\Temp/cc1NYKDS.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Vinnie\AppData\Local\Temp/cc1NYKDS.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Vinnie\AppData\Local\Temp/cc1NYKDS.s:5      *ABS*:00000034 __CCP__
+C:\Users\Vinnie\AppData\Local\Temp/cc1NYKDS.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Vinnie\AppData\Local\Temp/cc1NYKDS.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Vinnie\AppData\Local\Temp/cc1NYKDS.s:18     .text:00000000 main
+C:\Users\Vinnie\AppData\Local\Temp/cc1NYKDS.s:42     .text:0000000e iniTime
+C:\Users\Vinnie\AppData\Local\Temp/cc1NYKDS.s:60     .text:00000018 ISR
+
+NO UNDEFINED SYMBOLS

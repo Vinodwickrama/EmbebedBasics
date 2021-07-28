@@ -1,0 +1,70 @@
+   1               		.file	"myTimer.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	timer0_init
+  18               	timer0_init:
+  19               	.LFB2:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 83B7      		in r24,83-32
+  25 0002 8560      		ori r24,lo8(5)
+  26 0004 83BF      		out 83-32,r24
+  27               	.LM3:
+  28 0006 12BE      		out 82-32,__zero_reg__
+  29               	/* epilogue start */
+  30               	.LM4:
+  31 0008 0895      		ret
+  32               	.LFE2:
+  34               	.global	main
+  36               	main:
+  37               	.LFB3:
+  38               	.LM5:
+  39               	/* prologue: function */
+  40               	/* frame size = 0 */
+  41               	.LM6:
+  42 000a A09A      		sbi 52-32,0
+  43               	.LBB4:
+  44               	.LBB5:
+  45               	.LM7:
+  46 000c 83B7      		in r24,83-32
+  47 000e 8560      		ori r24,lo8(5)
+  48 0010 83BF      		out 83-32,r24
+  49               	.LM8:
+  50 0012 12BE      		out 82-32,__zero_reg__
+  51               	.LBE5:
+  52               	.LBE4:
+  53               	.LM9:
+  54 0014 91E0      		ldi r25,lo8(1)
+  55               	.L8:
+  56               	.LM10:
+  57 0016 82B7      		in r24,82-32
+  58 0018 8A3F      		cpi r24,lo8(-6)
+  59 001a 00F0      		brlo .L8
+  60               	.LM11:
+  61 001c 85B3      		in r24,53-32
+  62 001e 8927      		eor r24,r25
+  63 0020 85BB      		out 53-32,r24
+  64               	.LM12:
+  65 0022 12BE      		out 82-32,__zero_reg__
+  66 0024 00C0      		rjmp .L8
+  67               	.LFE3:
+ 101               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 myTimer.c
+C:\Users\Vinnie\AppData\Local\Temp/ccOGKpSo.s:2      *ABS*:0000003f __SREG__
+C:\Users\Vinnie\AppData\Local\Temp/ccOGKpSo.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Vinnie\AppData\Local\Temp/ccOGKpSo.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Vinnie\AppData\Local\Temp/ccOGKpSo.s:5      *ABS*:00000034 __CCP__
+C:\Users\Vinnie\AppData\Local\Temp/ccOGKpSo.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Vinnie\AppData\Local\Temp/ccOGKpSo.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Vinnie\AppData\Local\Temp/ccOGKpSo.s:18     .text:00000000 timer0_init
+C:\Users\Vinnie\AppData\Local\Temp/ccOGKpSo.s:36     .text:0000000a main
+
+NO UNDEFINED SYMBOLS
